@@ -1,23 +1,51 @@
 let url = "http://localhost:8080/api/transaction/merchant";
-let url2 = "http://localhost:8080/api/transaction";
+let url2 = "http://localhost:8080/api/transaction/city";
+let url3 = "http://localhost:8080/api/transaction/Job";
+let url4 = "http://localhost:8080/api/transaction/category";
+let url5 = "http://localhost:8080/api/transaction/state";
 
 
 
 export async function gettransactionMerchant() {
   let response = await fetch(`${url}`);
-  let transactions = await response.json();
+  let merchants = await response.json();
   console.log();
-  return transactions;
+  return merchants;
 }
 
-export async function gettransactionCity(id) {
-    let response = await fetch(`${url2}/${id}`);
+export async function gettransactionCity() {
+    let response = await fetch(`${url2}`);
     let cities = await response.json();
     console.log();
     return cities;
   }
 
+  export async function gettransactionJob() {
+    let response = await fetch(`${url3}`);
+    let jobs = await response.json();
+    console.log();
+    return jobs;
+  }
+  export async function gettransactionCategory() {
+    let response = await fetch(`${url4}`);
+    let categories = await response.json();
+    console.log();
+    return categories;
+  }
 
+  
+  export async function gettransactionState() {
+    let response = await fetch(`${url5}`);
+    let states = await response.json();
+    console.log();
+    return states;
+  }
+//   export async function gettransactionGender() {
+//     let response = await fetch(`${url4}`);
+//     let cities = await response.json();
+//     console.log();
+//     return cities;
+//   }
 
 // a. By gender
 // b. By spending category
