@@ -43,3 +43,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.navbar .navbar-nav .nav-link {
+  font-size: 22px; /* Increase font size */
+}
+.navbar-brand{
+  font-size: 25px; /* Increase font size */
+}

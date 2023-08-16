@@ -1,0 +1,122 @@
+/* styles.css */
+.welcome-banner {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    background-image: url("../public/computer.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  background-position: center;
+    background-color: #f8e71c;
+    padding: 180px;
+    text-align: center;
+    color:#fff;
+    height: 400px;
+
+  }
+  .section {
+    padding: 100px;
+    text-align: center;
+    color: #fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    margin: 20px;
+    font-size: 30px; /* Increase font size */
+    border: 2px solid transparent; /* Add border for interactivity */
+    border-width: 5px;
+    border-radius: 25px;
+    transition: border-color 0.3s ease-in-out; /* Add transition effect */
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .section:hover {
+    font-size: 40px;
+    border-color: beige; /* Change border color on hover */
+    cursor: pointer;
+  }
+
+
+/* .view-section,
+.analytics-section,
+.create-section,
+.cancel-section {
+    padding: 100px;
+    text-align: center;
+    /* size: 20px; */
+    /* color:black; */
+    /* margin: 10px 0px; */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+    /* min-height: 800px; Add a minimum height to prevent collapsing */
+    /* min-width : 200px; */
+    /* border-radius: 15px; */
+    /* border-color: black; */
+  /* }  */
+  
+/* 
+  .view-section,
+.analytics-section,
+.create-section,
+.cancel-section {
+  padding: 40px;
+  text-align: center;
+  color: #fff;
+  /* margin: 20px; Add margin to all sides */
+  /* min-height: 300px; */
+/* } */
+
+  .view {
+    /* margin: 20px; */
+    background-image: url("../public/create.jpg");
+  /* background-size:cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  /* background-position: center; */
+    /* background-color: #34c759; */
+    /* padding: 100px; */
+    /* text-align: center; */
+    /* color: #fff; */
+  }
+  
+  .analytics {
+    background-image: url("../public/analytics.jpg");
+  /* background-size:cover;
+  background-repeat: no-repeat;
+  /* background-attachment: fixed; */
+  /* background-position: center; */
+    /* background-color: #007aff; */
+    /* padding: 100px;
+    text-align: center;
+    color: #fff; */
+  }
+  
+  .create {
+    background-image: url("../public/creditCard.jpg");
+  /* background-size:cover; */
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  /* background-position: center; */
+    /* background-color: #ff9500;
+    padding: 100px;
+    text-align: center;
+    color: #fff; */
+  }
+  
+  .cancel{
+    background-image: url("../public/green.jpg");
+  /* background-size:cover; */
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+  /* background-position: center; */
+    /* background-color: #ff2d55; */
+    /* padding: 100px;
+    text-align: center;
+    color: #fff; */
+  }
+  .col-md-6 {
+    margin-bottom: 0px;
+    /* margin-right: 2px; */
+  }
+  

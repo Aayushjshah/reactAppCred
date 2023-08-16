@@ -1,58 +1,190 @@
 import React, { useEffect, useState } from 'react'
 import {getAllCustomer, getAllEmployees} from '../Services/custservice'
 import { NavLink, Outlet } from 'react-router-dom';
-export default function Home() {
-    const [filterValue, setFilterValue] = useState('');
-  const [dataList, setDataList] = useState([
-    { id: 1, name: 'Aayush', age: 28 },
-    { id: 12, name: 'Aman', age: 29 },
-    { id: 13, name: 'Aarti', age: 30 },
-    { id: 1, name: 'Aayush', age: 28 },
-    { id: 2, name: 'Diksha', age: 32 },
-    { id: 3, name: 'Sakshi', age: 25 },
-    // Add more data entries here
-  ]);
+import BarChart from './BarChart';
 
-  const handleFilterChange = (event) => {
-    setFilterValue(event.target.value);
+
+function GenderFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>Age Filters</h3>
+      {/* Implement your age filter UI here */}
+      <BarChart />
+    </div>
+  );
+}
+
+
+function MerchantFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>MerchantFilter</h3>
+      {/* Implement your sex filter UI here */}
+    </div>
+  );
+}
+function CityFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>City Filter</h3>
+      {/* Implement your city filter UI here */}
+    </div>
+  );
+}
+function StateFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>StateFilter</h3>
+      {/* Implement your sex filter UI here */}
+    </div>
+  );
+}
+function SpendingCategoryFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>SpendingCategoryFilter</h3>
+      {/* Implement your sex filter UI here */}
+    </div>
+  );
+}
+
+function PopulationGroupsFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>PopulationGroupsFilter</h3>
+      {/* Implement your sex filter UI here */}
+    </div>
+  );
+}
+function AmtOfSpendingFilter({ onFilterChange }) {
+  return (
+    <div>
+      <h3>AmtOfSpendingFilter</h3>
+      {/* Implement your sex filter UI here */}
+    </div>
+  );
+}
+function ExplorePage() {
+  
+}
+
+  
+  
+export default function Analytics() {
+  const [activeFilter, setActiveFilter] = useState(null);
+
+  const handleFilterClick = (filterName) => {
+    console.log(filterName)
+    setActiveFilter(filterName);
   };
 
-  const filteredData = dataList.filter((item) =>
-    item.name.toLowerCase().includes(filterValue.toLowerCase())
+  const renderFilterComponent = () => {
+    switch (activeFilter) {
+      case 'gender':
+        return <GenderFilter />;
+      case 'spending-category':
+        return <SpendingCategoryFilter />;
+      case 'merchant':
+        return <MerchantFilter />;
+      case 'city':
+        return <CityFilter />;
+      case 'state':
+        return <StateFilter />;
+      case 'population-groups':
+        return <PopulationGroupsFilter />;
+      case 'amt-of-spending':
+        return <AmtOfSpendingFilter />;  
+        default:
+        return null;
+    }
+  };
+
+  const [ageFilter, setAgeFilter] = useState('');
+  const [sexFilter, setSexFilter] = useState('');
+  const [cityFilter, setCityFilter] = useState('');
+  const [profiles, setProfiles] = useState([
+    { id: 1, name: 'Aayush', age: 25, sex: 'female', city: 'New York' },
+    { id: 2, name: 'Diksha', age: 32, sex: 'male', city: 'Los Angeles' },
+    { id: 3, name: 'Sakshi', age: 28, sex: 'male', city: 'Chicago' },
+    // Add more profiles here
+  ]);
+
+  const filteredProfiles = profiles.filter(
+    (profile) =>
+      (ageFilter === '' || profile.age === parseInt(ageFilter)) &&
+      (sexFilter === '' || profile.sex === sexFilter) &&
+      (cityFilter === '' || profile.city.toLowerCase().includes(cityFilter.toLowerCase()))
   );
 
   return (
     <div className="container mt-5">
-      <h1>Spending History</h1>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="filterInput" className="form-label">
-            Filter by Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="filterInput"
-            value={filterValue}
-            onChange={handleFilterChange}
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Enter a name to filter the data"
-          />
+      <div className="row">
+        <div className="col-md-3">
+          <div className="list-group">
+            <a
+              href="#"
+              className="list-group-item list-group-item-action active"
+            >
+              Filter By : 
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'gender' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('gender')}
+              >
+              Gender
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'spending-category' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('spending-category')}
+              >
+              Spending  Category
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'merchant' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('merchant')}
+              >
+              Merchant
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'city' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('city')}
+              >
+              City
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'state' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('state')}
+              >
+              State
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'population-groups' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('population-groups')}
+              >
+              Population Groups
+            </a>
+            <a href="#" className={`list-group-item list-group-item-action ${
+                  activeFilter === 'amt-of-spending' ? 'active' : ''
+                }`}
+                onClick={() => handleFilterClick('amt-of-spending')}
+              >
+              Amt of Spending
+            </a>
+          </div>
         </div>
-      </form>
-
-      <div className="mt-4">
-        <h2>Filtered</h2>
-        <ul>
-          {filteredData.map((item) => (
-            <li key={item.id}>
-              {item.name}, Avg Spend: {item.age}
-            </li>
-          ))}
-        </ul>
+        <div className="col-md-9">
+          <h1>Explore Profiles</h1>
+          {renderFilterComponent()}
+          {/* Profile list */}
+          {/* Display profiles based on active filter */}
+        </div>
       </div>
     </div>
   );
-
 }
