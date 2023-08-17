@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from "react-router-dom";
 import "../App.css"
-export default function Contact() {
+export default function NavBar() {
 return (
     <div>
  <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,7 +24,7 @@ return (
     </li>
 
     <li className="nav-item">
-    {/* <NavLink className="nav-link" to="/login">Login</NavLink> */}
+    <NavLink className="nav-link" to="/about">About</NavLink>
     </li>
  </ul>
  </div>

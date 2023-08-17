@@ -47,8 +47,8 @@ return (
           <input type="text" className="form-control" name='lastName'value={customer.lastName} onChange={handleChange} data-toggle="tooltip" data-placement="top" placeholder="Enter your last name" />
         </div>
         <div className="mb-3">
-          <label htmlFor="job" className="form-label">Job</label>
-          <input type="text" className="form-control" name='job' value={customer.Job} onChange={handleChange} data-toggle="tooltip" data-placement="top" placeholder="Enter Job" />
+          <label htmlFor="Job" className="form-label">Job</label>
+          <input type="text" className="form-control" name='Job' value={customer.Job} onChange={handleChange} data-toggle="tooltip" data-placement="top" placeholder="Enter Job" />
         </div>
         <div className="mb-3">
           <label htmlFor="dobInput" className="form-label">Date of Birth</label>

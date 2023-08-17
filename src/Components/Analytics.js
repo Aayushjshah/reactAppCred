@@ -10,7 +10,7 @@ function GenderFilter({ onFilterChange }) {
     <div>
       <h3>Age Filters</h3>
       {/* Implement your age filter UI here */}
-      <BarChart />
+      {/* <BarChart /> */}
     </div>
   );
 }
@@ -65,9 +65,7 @@ function AmtOfSpendingFilter({ onFilterChange }) {
     </div>
   );
 }
-function ExplorePage() {
-  
-}
+
 
   
   

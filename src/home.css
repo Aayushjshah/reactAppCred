@@ -37,6 +37,12 @@
     cursor: pointer;
   }
 
+  .card:hover {
+    font-size: 1.2em;
+    border-color: beige; /* Change border color on hover */
+    cursor: pointer;
+  }
+
 
 /* .view-section,
 .analytics-section,
