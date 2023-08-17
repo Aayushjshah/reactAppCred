@@ -11,25 +11,32 @@ export default function Home() {
     <div>
         {/* <p>{JSON.stringify(employees)}</p> */}
         <div className='row mt-5'>
-            <div className='col-md-3' style={{borderRight:'2px solid black'}}>
             <ul className="list-group list-group-flush">
                 {  
                     customers.length &&(
                     customers.map(customer => (
                         <li key={customer.customerId} className="list-group-item">
-                        <NavLink to={`/${customer.customerId}`}>
-                            {customer.firstName}
-                        </NavLink>
+                        {/* <NavLink to={`/${customer.customerId}`}> */}
+                        <div class="card">
+                 <div class="card-body">
+                 <a href={`/${customer.customerId}`} class="card-link">  {customer.firstName} {customer.lastName}
+</a>
+
+
+  </div>
+</div>
+
+                        {/* </NavLink> */}
                         </li>
                     ))
                     )
                 }
-            </ul>
-            </div>
-            <div className='col-md-9'>
                 
-                <Outlet/>
-            </div>
+
+
+
+            </ul>
+            
         </div>
     </div>
   )
