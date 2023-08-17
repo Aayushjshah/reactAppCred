@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import {getAllCustomer, getAllEmployees} from '../Services/custservice'
+import {gettransactionMerchant,gettransactionCity} from '../Services/transacservice'
 import { NavLink, Outlet } from 'react-router-dom';
+
 import BarChart from './BarChart';
 
 
@@ -187,4 +188,5 @@ export default function Analytics() {
       </div>
     </div>
   );
+
 }
