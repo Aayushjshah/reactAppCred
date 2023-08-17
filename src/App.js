@@ -10,6 +10,7 @@ import Cancel from './Components/Cancel';
 import Home from './Components/Home'
 import Analytics from './Components/Analytics'
 import About from './Components/About';
+import CancelCustomer from './Components/CancelCustomer'
 function App() {
   return (
     <div className="container">
@@ -21,6 +22,7 @@ function App() {
           {<Route path='/analytics' element={<Analytics />} />}
           {<Route path='/register' element={<Register />} />}
           {<Route path='/cancel' element={<Cancel />} />}
+          {<Route path='/cancel/:id' element={<CancelCustomer />} />}
           {<Route path='/login' element={<Login />} />}
           {<Route path='/about' element={<About />} />}
 
