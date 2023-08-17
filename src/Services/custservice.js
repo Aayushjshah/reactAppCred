@@ -12,7 +12,7 @@ export async function getAllCustomer() {
 
 
 export async function getCustomerById(id) {
-  let response = await fetch(`${url}/${id}`);
+  let response = await fetch(`${url}/customer/${id}`);
   let customers = await response.json();
   console.log(customers);
   return customers;
@@ -22,6 +22,7 @@ export async function addCustomer(customer) {
   let response = await fetch(`${url}`, {
     method: "POST",
     body: JSON.stringify(customer),
+    // body: customer,
     headers: {
       "Content-Type": "application/json",
     },
@@ -36,6 +37,7 @@ export async function deleteCustomer(id) {
     method: "DELETE",
   });
   let data = await response.json();
+  console.log("DELETE")
   console.log(data);
   return data;
 }
