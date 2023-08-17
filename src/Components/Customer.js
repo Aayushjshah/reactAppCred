@@ -7,29 +7,41 @@ export default function Home() {
     useEffect(()=>{
         getAllCustomer().then(customers=>setcustomer(customers));
     },[])
+
+    const [message, setMessage] = useState('');
+
+    const handleChange = event => {
+      setMessage(event.target.value);
+    }
+ 
+
   return (
     <div>
         {/* <p>{JSON.stringify(employees)}</p> */}
         <div className='row mt-5'>
-            <div className='col-md-3' style={{borderRight:'2px solid black'}}>
             <ul className="list-group list-group-flush">
-                {  
-                    customers.length &&(
+               {  <select id="message" name="message" onChange={handleChange} value={message} class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected >Select Customer Name</option>
+                    {customers.length &&(
                     customers.map(customer => (
-                        <li key={customer.customerId} className="list-group-item">
-                        <NavLink to={`/${customer.customerId}`}>
-                            {customer.firstName}
-                        </NavLink>
-                        </li>
+
+                        
+                        <option >{customer.firstName} {customer.lastName}</option>
+
                     ))
-                    )
+                    )}
+                    </select>
+
                 }
-            </ul>
-            </div>
-            <div className='col-md-9'>
+
+<h1>{message}</h1>
+
                 
-                <Outlet/>
-            </div>
+
+
+
+            </ul>
+            
         </div>
     </div>
   )
