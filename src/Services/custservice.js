@@ -1,4 +1,4 @@
-let url = "http://localhost:8080/api/cutomer";
+let url = "http://localhost:8080/api/customer";
 
 export async function getAllCustomer() {
   let response = await fetch(`${url}`);
