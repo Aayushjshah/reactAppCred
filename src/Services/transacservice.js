@@ -3,8 +3,8 @@ let url2 = "http://localhost:8080/api/transaction/city";
 let url3 = "http://localhost:8080/api/transaction/Job";
 let url4 = "http://localhost:8080/api/transaction/category";
 let url5 = "http://localhost:8080/api/transaction/state";
-
-
+let url6= "http://localhost:8080/api/transaction/total_amt/gender"
+let url7="http://localhost:8080/api/transaction/spendingByAmount"
 
 export async function gettransactionMerchant() {
   let response = await fetch(`${url}`);
@@ -39,6 +39,18 @@ export async function gettransactionCity() {
     let states = await response.json();
     console.log();
     return states;
+  }
+  export async function gettransactionGender() {
+    let response = await fetch(`${url6}`);
+    let genders = await response.json();
+    console.log();
+    return genders;
+  }
+  export async function gettransactionspendingByAmount(low,high) {
+    let response = await fetch(`${url7}/${low}/${high}`);
+    let spending = await response.json();
+    console.log();
+    return spending;
   }
 
 
