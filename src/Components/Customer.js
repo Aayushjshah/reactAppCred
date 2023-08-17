@@ -8,11 +8,51 @@ export default function Home() {
         getAllCustomer().then(customers=>setcustomer(customers));
     },[])
 
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('')
 
     const handleChange = event => {
       setMessage(event.target.value);
+     
     }
+  //   const [searchId, setSearchId] = useState('');
+  // const [foundUser, setFoundUser] = useState(null);
+
+  // const handleSearch = () => {
+  //   const user = customers.find(user => user.id === searchId);
+  //   setFoundUser(user);
+  // };
+
+//     const renderdata=(id)=>
+//     {
+// return (
+//   customers
+//   .filter(({cust}) => cust.customerId===id)
+//   .map(cust => (
+// <div>
+// <h1>Customer ID:{cust.customerId}</h1>
+// <h2>Customer First Name:{cust.firstName}</h2>
+// <h2>Customer Last Name:{cust.lastName}</h2>
+// <h1>Customer Gender:{cust.gender}</h1>
+// <h1>Customer Job:{cust.job}</h1>
+// <h1>Customer DOB:{cust.dob}</h1>
+
+// </div>
+//   )))}
+
+
+  
+
+ 
+
+  // return (
+  //   <div>
+  //     <h2>User Search</h2>
+  //     <input
+  //       type="text"
+  //       value={searchId}
+  //       onChange={(e) => setSearchId(e.target.value)}
+  //     />
+  //     <button onClick={handleSearch}>Search</button>
  
 
   return (
@@ -26,15 +66,17 @@ export default function Home() {
                     customers.map(customer => (
 
                         
-                        <option >{customer.firstName} {customer.lastName}</option>
+                        <option value={customer.customerId} onChange={handleChange}>{customer.firstName} {customer.lastName}</option>
+                      
 
                     ))
                     )}
                     </select>
 
                 }
-
-<h1>{message}</h1>
+                {/* <renderdata/> */}
+                {/* {renderdata(message)} */}
+<h1>Customer Id: {message}</h1>
 
                 
 
