@@ -18,7 +18,7 @@ export default function Contact() {
 
   const delCustomer = ()=>{
     deleteCustomer(Number(id))
-    .then(res=>navigate('/'))
+    .then(res=>navigate('/home'))
   }
 
 
@@ -32,10 +32,18 @@ return (
         <label for="idInput" class="form-label">Enter ID</label>
         <input type="text" class="form-control" id="idInput" placeholder="Enter the ID"/>
       </div>
-      <div className='container mt-5'>
-        <h1>FirstName : {customers.firstName}</h1>
-       
-    </div>
+      <div className="card mt-4">
+        <div className="card-body">
+          <h3 className="card-title">User Data</h3>
+          <p><strong>ID:</strong> {customers.customerId}</p>
+          <p><strong>First Name:</strong> {customers.firstName}</p>
+          <p><strong>Last Name:</strong> {customers.lastName}</p>
+          <p><strong>Gender:</strong> {customers.gender}</p>
+          <p><strong>DOB:</strong> {customers.dob}</p>
+          <p><strong>Job:</strong> {customers.job}</p>
+          {/* <button onClick={delCustomer} className="btn btn-danger">Delete</button> */}
+        </div>
+      </div>
 
 
 
