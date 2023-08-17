@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import BarChart from './BarChart';
+// import { Pie } from 'react-chartjs-2';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'; 
+
+// import BarChart from './BarChart';
 import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionJob,gettransactionState,gettransactionGender} from '../Services/transacservice'
 import { NavLink, Outlet,useNavigate, useParams } from 'react-router-dom';
 
 
 
-  
+// Sample data
+// const data = [
+//   { name: 'Male', value: 120 },
+//   { name: 'Female', value: 80 },
+// ];
+
+const COLORS = ['#36A2EB', '#FF6384'];
   
 export default function Analytics() {
   const [activeFilter, setActiveFilter] = useState(null);
@@ -45,21 +55,61 @@ useEffect(()=>{
   gettransactionGender().then(gender=>setgender(gender));
 },[])
 
-
+const generateRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 function GenderFilter({ onFilterChange }) {
+  
+
+    const data = genders.map((gender) => ({
+     name: gender.gender,
+     value: gender.total_amt,
+     color: generateRandomColor()
+   }));
   return (
     <div>
-      <h3>Age Filters</h3>
-      {
+      {/* <h3>Age Filters</h3> */}
+      {/* {
        genders.length &&(
           genders.map(gender => (
               <li key={gender.gender} className="list-group-item">
              {gender.gender} {gender.total_amt}
               
               </li>
+              // <PieChart />
+              
           ))
           )
-      }
+      } */}
+      {/* <PieChart width={700} height={700}>
+            <Pie data={data} dataKey="students" outerRadius={250} fill="green" />
+        </PieChart> */}
+<div>
+  
+<PieChart width={700} height={700}>
+      <Pie
+        dataKey="value"
+        isAnimationActive={false}
+        data={data}
+        cx={200}
+        cy={200}
+        outerRadius={250}
+        fill="#8884d8"
+        label={(entry) => `${entry.name} ${(entry.percent * 100).toFixed(2)}%`}
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={entry.color} />
+        ))}
+      </Pie>
+      <Tooltip formatter={(value) => `${value} students`} />
+      <Legend />
+    </PieChart>
+    </div>
     </div>
   );
 }
@@ -68,7 +118,7 @@ function GenderFilter({ onFilterChange }) {
 function MerchantFilter({ onFilterChange }) {
   return (
     <div>
-      <h3>MerchantFilter</h3>
+      {/* <h3>MerchantFilter</h3> */}
       {
         merchants.length &&(
           merchants.map(merchant => (
@@ -106,6 +156,11 @@ function CityFilter({ onFilterChange }) {
   );
 }
 function StateFilter({ onFilterChange }) {
+  const data = states.map((state) => ({
+    name: state.state,
+    value: state.total_amt,
+    color: generateRandomColor()
+  }));
   return (
     <div>
       <h3>StateFilter</h3>
@@ -125,10 +180,38 @@ function StateFilter({ onFilterChange }) {
                        </div>
       
       }
+      <div>
+      <PieChart width={700} height={700}>
+      <Pie
+        dataKey="value"
+        isAnimationActive={false}
+        data={data}
+        cx={200}
+        cy={200}
+        outerRadius={250}
+        fill="#8884d8"
+        label={(entry) => `${entry.name} ${(entry.percent * 100).toFixed(2)}%`}
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={entry.color} />
+        ))}
+      </Pie>
+      <Tooltip formatter={(value) => `${value} students`} />
+      <Legend />
+    </PieChart>
+      </div>
     </div>
+
+    
   );
 }
 function SpendingCategoryFilter({ onFilterChange }) {
+  const data = categories.map((categorie) => ({
+    name: categorie.category,
+    value: categorie.total_amt,
+    label: categorie.total_amt,
+    color: generateRandomColor()
+  }));
   return (
     <div>
       <h3>SpendingCategoryFilter</h3>
@@ -149,6 +232,20 @@ function SpendingCategoryFilter({ onFilterChange }) {
 
 
       }
+      <div>
+      <BarChart width={400} height={300} data={data}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="value" fill="#8884d8">
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={entry.color} />
+        ))}
+      </Bar>
+    </BarChart>
+      </div>
     </div>
   );
 }
