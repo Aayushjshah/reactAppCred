@@ -17,7 +17,7 @@
   .section {
     padding: 100px;
     text-align: center;
-    color: #fff;
+    color:white;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 300px;
@@ -29,8 +29,54 @@
     transition: border-color 0.3s ease-in-out; /* Add transition effect */
     cursor: pointer;
     position: relative;
+    /* .background-blur { */
+      /* position: absolute;
+      width: 100%;
+      height: 100%; */
+      /* background-image: url('path/to/your/background-image.jpg'); */
+       /* Adjust the blur amount as needed */
+      /* z-index: -1; */
+    /* } */
   }
-  
+  .heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    z-index: 1; /* Bring the heading above the background-blur */
+  }
+  .text{
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:brown;
+  text-align: center;
+  font-size: 24px;
+  z-index: 1
+  }
+
+  .background-blur {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('path/to/your/background-image.jpg'); */
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px); /* Adjust the blur amount as needed */
+    z-index: -1;
+  }
+  .background-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Adjust as needed */
+    /* background-image: url('path/to/your/background-image.jpg'); */
+    background-size: cover;
+    background-position: center;
+  }
   .section:hover {
     font-size: 40px;
     border-color: beige; /* Change border color on hover */
@@ -75,6 +121,7 @@
 
   .view {
     /* margin: 20px; */
+    /* background-image: url("../public/create2.jpg"); */
     background-image: url("../public/create.jpg");
   /* background-size:cover;
   background-repeat: no-repeat;
@@ -88,6 +135,7 @@
   
   .analytics {
     background-image: url("../public/analytics.jpg");
+    /* background-image: url("../public/black4.jpg"); */
   /* background-size:cover;
   background-repeat: no-repeat;
   /* background-attachment: fixed; */
@@ -100,6 +148,7 @@
   
   .create {
     background-image: url("../public/creditCard.jpg");
+    /* background-image: url("../public/black3.jpg"); */
   /* background-size:cover; */
   /* background-repeat: no-repeat; */
   /* background-attachment: fixed; */
@@ -111,8 +160,9 @@
   }
   
   .cancel{
-    background-image: url("../public/green.jpg");
-  /* background-size:cover; */
+    /* background-image: url("../public/green.jpg"); */
+    background-image: url("../public/green2.jpg");
+    /* background-size:cover; */
   /* background-repeat: no-repeat; */
   /* background-attachment: fixed; */
   /* background-position: center; */

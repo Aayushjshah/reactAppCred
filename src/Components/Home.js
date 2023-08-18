@@ -27,10 +27,10 @@ return (
   <div className="row">
     <div className="col-md-6 col-lg-6 create-section">
       <a href="/register">
-        <div className="section create">
-          <h2>Register a new Card</h2>
+      <div className="section create">
+          <h2>Register</h2>
         </div>
-      </a>
+    </a>
     </div>
     <div className="col-md-6 col-lg-6 cancel-section">
       <a href="/cancel">

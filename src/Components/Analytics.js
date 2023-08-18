@@ -267,9 +267,11 @@ function SpendingCategoryFilter({ onFilterChange }) {
   }));
   return (
     <div>
-      <h3>SpendingCategoryFilter</h3>
+      {/* <h3>SpendingCategoryFilter</h3> */}
 
-
+    {/* <BarChart> */}
+    <div className="pie-chart-container">
+      <BarChart width={700} height={500} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
@@ -282,7 +284,7 @@ function SpendingCategoryFilter({ onFilterChange }) {
       </Bar>
     </BarChart>
       </div>
-    </div>
+      </div>
   );
 }
 
