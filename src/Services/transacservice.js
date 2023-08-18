@@ -48,15 +48,15 @@ export async function gettransactionCity() {
     console.log();
     return genders;
   }
-  export async function gettransactionspendingByAmount(low,high) {
-    let response = await fetch(`${url7}/${low}/${high}`);
+  export async function gettransactionspendingByAmount(high) {
+    let response = await fetch(`${url7}/1000/${high}`);
     let spending = await response.json();
     console.log();
     return spending;
   }
 
   export async function gettransactionTopMerchant(limit) {
-    let response = await fetch(`${url8}/{limit}?limit=${limit}`);
+    let response = await fetch(`${url8}?limit=${limit}`);
     let topMerchants = await response.json();
     console.log();
     return topMerchants;

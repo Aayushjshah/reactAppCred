@@ -4,10 +4,10 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'; 
 
 // import BarChart from './BarChart';
-import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionJob,gettransactionState,gettransactionGender,gettransactionTopMerchant} from '../Services/transacservice'
+import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionspendingByAmount,gettransactionJob,gettransactionState,gettransactionGender,gettransactionTopMerchant} from '../Services/transacservice'
 import { NavLink, Outlet,useNavigate, useParams } from 'react-router-dom';
 import "../App.css"
-
+import { getCustomerById } from '../Services/custservice';
 
 // Sample data
 // const data = [
@@ -24,32 +24,46 @@ export default function Analytics() {
   let {id} = useParams()
   let navigate = useNavigate()
 
-
+ 
     const [merchants, setmerchants] = useState([]);
     const [cities,setcity]=useState([]);
     const [jobs,setjob]=useState([]);
     const [categories,setcategory]=useState([]);
     const [states,setstate]=useState([]);
+    const [spending,setspending]=useState([]);
+
     const [genders,setgender]=useState([]);
 
 
-
     const [message, setMessage] = useState('');
-    const [message2, setMessage2] = useState('');
+    const [message2, setMessage2] = useState(5);
+    const [message3, setMessage3] = useState('');
+    // const [low, setlow] = useState(100);
+    const [high, sethigh] = useState(1001);
 
+
+    
+
+    const [topMerchants,settopMerchants]=useState([]);
 
     const handleChange = event => {
       setMessage(event.target.value);
     }
     const handleChange2 = event => {
       setMessage2(event.target.value);
-      gettransactionTopMerchant(Number(message2)).then(topMerchants=>settopMerchants(topMerchants));
 
     }
-    const [topMerchants,settopMerchants]=useState([]);
+    const handleChange3 = event => {
+      setMessage3(event.target.value);
 
+    }
 
+ 
+    const handleChangehigh = event => {
+      sethigh(event.target.value);
 
+    }
+    
 
 
 
@@ -73,8 +87,15 @@ export default function Analytics() {
 useEffect(()=>{
   gettransactionGender().then(gender=>setgender(gender));
 },[])
-// useEffect(()=>{
-// },[])
+useEffect(()=>{
+  gettransactionTopMerchant(Number(message2)).then(topMerchants=>settopMerchants(topMerchants));
+
+},[message2])
+useEffect(()=>{
+  gettransactionspendingByAmount(high).then(spending=>setspending(spending));
+
+},[high])
+
 
 
 
@@ -147,8 +168,7 @@ function MerchantFilter({ onFilterChange }) {
 
 
     
-
-{  <select id="message2" name="message2" onChange={handleChange2} value={message2}class="form-select" aria-label="Default select example">
+ {  <select id="message2" name="message2" onChange={handleChange2} value={message2}class="form-select" aria-label="Default select example">
                       <option selected >Select limit</option>
                       <option value="5">5</option>
                       <option value="10">10</option>
@@ -295,11 +315,18 @@ function PopulationGroupsFilter({ onFilterChange }) {
       {jobs.length &&(
          jobs.map(job => (
               <li key={job.job} className="list-group-item">
-             {job.job}
+             <div class="gap-2">
+  <button class="btn btn-outline-success btn-lg " type="button" id="message3" name="message3" onChange={handleChange3} value={job.total_amt} >{job.job}</button>
+{job.total_amt}
+{message3}
+</div>
+
               
               </li>
+              
           ))
-          )}
+          )
+          }
     </div>
   );
 }
@@ -307,10 +334,29 @@ function AmtOfSpendingFilter({ onFilterChange }) {
   return (
     <div>
       <h3>AmtOfSpendingFilter</h3>
-      {/* Implement your sex filter UI here */}
+      {
+        <div>
+     <div className='container mt-5'>   
+        <label for="customRange2" class="form-label">Example range</label>
+      <input type="range" class="form-range" min="1001" max="5000" id="high" name="high" onChange={handleChangehigh} value={high}  ></input>
+   {high}
+    </div>
+    {
+   spending.length &&(
+    spending.map(spend=> (
+         <li key={spend.cutomerId} className="list-group-item">
+        <h5>Cutomer ID:{spend.customerId}</h5><h6> Spending Amount:{spend.amt}</h6>
+         
+         </li>
+     ))
+     )
+ 
+    }</div>
+      }
     </div>
   );
-}
+    }
+
 
 
 
