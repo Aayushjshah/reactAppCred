@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { deleteCustomer } from '../Services/custservice'
 import { getCustomerById } from '../Services/custservice'
 import React, { useEffect, useState } from 'react'
+import '../home.css'
 
 export default function Contact() {
 
@@ -25,8 +26,15 @@ export default function Contact() {
   
 
 return (
+  
 <div class="container mt-5">
-    <h1>Cancel Page</h1>
+<div className="container-fluid">
+    <div className="row">
+      <div className="col-md-12 about-banner">
+        <h1>Meet the Team SimpleStrings</h1>
+      </div>
+    </div>
+    </div>  
     <form>
       <div class="mb-3">
         <label for="idInput" class="form-label">Enter ID</label>
@@ -46,7 +54,7 @@ return (
       </div>
 
 
-
+      
       <button type="submit" class="btn btn-primary"onClick={delCustomer}>DELETE</button>
     </form>
   </div>

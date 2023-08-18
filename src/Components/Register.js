@@ -32,6 +32,13 @@ export default function Register() {
 
 return (
 <div className="container mt-5">
+<div className="container-fluid">
+    <div className="row">
+      <div className="col-md-12 register-banner">
+        <h1>Register</h1>
+      </div>
+    </div>
+    </div>
       <h1>New Card Registration</h1>
       <form  onSubmit={handleSubmit}>
       <div className="mb-3">
