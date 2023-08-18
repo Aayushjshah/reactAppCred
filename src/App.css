@@ -58,3 +58,12 @@ body {
   height: 100vh; /* Adjust this as needed */
   width: 100vh;
 }
+
+.bar-chart-container {
+  padding-left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this as needed */
+  width: 100vh;
+}
