@@ -21,94 +21,31 @@ export default function Home() {
     useEffect(()=>{
       getCustomerById(Number(custid)).then(customer=>setcustomer(customer));
     },[custid])
-    
-  //   const [searchId, setSearchId] = useState('');
-  // const [foundUser, setFoundUser] = useState(null);
-
-  // const handleSearch = () => {
-  //   const user = customers.find(user => user.id === searchId);
-  //   setFoundUser(user);
-  // };
-
-//     const renderdata=(id)=>
-//     {
-// return (
-//   customers
-//   .filter(({cust}) => cust.customerId===id)
-//   .map(cust => (
-// <div>
-// <h1>Customer ID:{cust.customerId}</h1>
-// <h2>Customer First Name:{cust.firstName}</h2>
-// <h2>Customer Last Name:{cust.lastName}</h2>
-// <h1>Customer Gender:{cust.gender}</h1>
-// <h1>Customer Job:{cust.job}</h1>
-// <h1>Customer DOB:{cust.dob}</h1>
-
-// </div>
-//   )))}
-
-
-  
-
- 
-
-  // return (
-  //   <div>
-  //     <h2>User Search</h2>
-  //     <input
-  //       type="text"
-  //       value={searchId}
-  //       onChange={(e) => setSearchId(e.target.value)}
-  //     />
-  //     <button onClick={handleSearch}>Search</button>
  
 
   return (
-    <div>
-        {/* <p>{JSON.stringify(employees)}</p> */}
-        <div className='row mt-5'>
-            <ul className="list-group list-group-flush">
-               {/* {  <select id="custid" name="custid" onChange={handleChangeCustid} value={custid} class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected >Select Customer Name</option>
-                    {customers.length &&(
-                    customers.map(customer => (
-
-                        
-                        <option value={customer.customerId}>{customer.firstName} {customer.lastName}</option>
-                      
-
-                    ))
-                    )}
-                    </select>
-
-                } */}
-
-                {<form class="d-flex">
-        <input id="custid" name="custid" value={custid} onChange={handleChangeCustid} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-        {/* <button class="btn btn-outline-success" type="submit"  >Search</button> */}
-
-      </form>}
-
-      
-                {/* <renderdata/> */}
-                {/* {renderdata(message)} */}
+    <><div className="container">
+      <div className="mb-4">
+      {<form class="d-flex">
+              <input id="custid" name="custid" value={custid} onChange={handleChangeCustid} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
 
 
-                
- <div>
- <h1>Customer ID:{customer.customerId}</h1>
- <h2>First Name:{customer.firstName}</h2>
- <h2>Last Name:{customer.lastName}</h2>
-<h2> Gender:{customer.gender}</h2>
-<h2>Job:{customer.job}</h2>
- <h2>DOB:{customer.dob}</h2>
+            </form>}
+      </div>
+      <div>
 
- </div>
-
-
-            </ul>
-            
+      </div>
+      <div className="card">
+        <div className="card-body">
+          <h1 className="card-title">Customer Information</h1>
+          <h2 className="card-subtitle mb-2 text-muted">Customer ID: {customer.customerId}</h2>
+          <h5 className="card-text">First Name: {customer.firstName}</h5>
+          <h5 className="card-text">Last Name: {customer.lastName}</h5>
+          <h5 className="card-text">Gender: {customer.gender}</h5>
+          <h5 className="card-text">Job: {customer.job}</h5>
+          <h5 className="card-text">DOB: {customer.dob}</h5>
         </div>
-    </div>
+      </div>
+    </div></>
   )
 }

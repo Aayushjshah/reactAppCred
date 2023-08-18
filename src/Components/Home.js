@@ -10,7 +10,7 @@ return (
   </div>
   <div className="row">
     <div className="col-md-6 col-lg-6 view-section">
-      <a href="/view">
+      <a href="/customers">
         <div className="section view">
           <h2>View</h2>
         </div>

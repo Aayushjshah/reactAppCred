@@ -168,7 +168,8 @@ function MerchantFilter({ onFilterChange }) {
 
 
     
- {  <div><h5>Select the limit for top merchants</h5>
+ { 
+  <div><h5>Select the limit for top merchants</h5>
  <select id="message2" name="message2" onChange={handleChange2} value={message2}class="form-select" aria-label="Default select example">
                       <option selected >Select limit</option>
                       <option value="5">5</option>
@@ -178,32 +179,33 @@ function MerchantFilter({ onFilterChange }) {
                       <option value="25">25</option>
                       <option value="50">50</option>
                       </select>
+                      <h3></h3>
+                      <h3></h3>
                       <h3> The top {message2} merchants are:</h3>
-
-                      </div>
+                      <h3></h3>
+                      <h3></h3>
+ </div>
 }
 
-
-                  {topMerchants.length &&(
-                  topMerchants.map(topmerch => (
-                    <div>
-
-                    <ul className="list-group list-group-flush">
-
-<li>
-  <p></p>
-  
-    <h5 class="card-title">Merchant Name: {topmerch.merchant} </h5>
-    <h6 class="card-subtitle">Total Amount :{topmerch.total_amt}</h6>
-    <h6 class="card-text">State:{topmerch.state}</h6>
-    <h6 class="card-text">City:{topmerch.city}</h6>
-    <h6 class="card-text">City Population:{topmerch.cityPopulation}</h6>
-     <p></p>     
-                      
-                      </li></ul>
+<div className="container">
+  <div className="row">
+    <div className="col">
+      {topMerchants.length && (
+        <ul className="list-group list-group-flush">
+          {topMerchants.map((topmerch, index) => (
+            <li className="list-group-item" key={index}>
+              <h5 className="card-title">Name: {topmerch.merchant}</h5>
+              <h6 className="card-subtitle">Total Amount: {topmerch.total_amt}</h6>
+              <p className="card-text">State: {topmerch.state}</p>
+              <p className="card-text">City: {topmerch.city}</p>
+              <p className="card-text">City Population: {topmerch.cityPopulation}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
 </div>
-                  ))
-                  )}
       
  
 
@@ -311,49 +313,54 @@ function SpendingCategoryFilter({ onFilterChange }) {
 function PopulationGroupsFilter({ onFilterChange }) {
   return (
     <div>
-      <h3>Profession</h3>
-      {jobs.length &&(
-         jobs.map(job => (
-              <li key={job.job} className="list-group-item">
-             <div class="gap-2">
-  <button class="btn btn-outline-success btn-lg " type="button" id="message3" name="message3" onChange={handleChange3} value={job.total_amt} >{job.job}</button>
-{job.total_amt}
-{message3}
+  <h3>Profession</h3>
+  {jobs.length && (
+    <ul className="list-group">
+      {jobs.map((job, index) => (
+        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <button
+              className="btn btn-outline-success btn-lg"
+              type="button"
+              id={`message-${index}`}
+              name={`message-${index}`}
+              onChange={handleChange3}
+              value={job.total_amt}
+            >
+              {job.job}
+            </button>
+          </div>
+          <div>{message3 === job.total_amt ? <span className="badge bg-success">{job.total_amt}</span> : null}</div>
+        </li>
+      ))}
+    </ul>
+  )}
 </div>
 
-              
-              </li>
-              
-          ))
-          )
-          }
-    </div>
   );
 }
 function AmtOfSpendingFilter({ onFilterChange }) {
   return (
     <div>
-      <h3>AmtOfSpendingFilter</h3>
-      {
-        <div>
-     <div className='container mt-5'>   
-        <label for="customRange2" class="form-label">Spending Range</label>
-      <input type="range" class="form-range" min="1001" max="5000" id="high" name="high" onChange={handleChangehigh} value={high}  ></input>
-   {high}
-    </div>
-    {
-   spending.length &&(
-    spending.map(spend=> (
-         <li key={spend.cutomerId} className="list-group-item">
-        <h5>Cutomer Id:{spend.customerId}</h5><h6> Spending Amount:{spend.amt}</h6>
-         
-         </li>
-     ))
-     )
- 
-    }</div>
+  <h3>Profession</h3>
+  {jobs.length &&(
+     jobs.map(job => (
+          <li key={job.job} className="list-group-item">
+         <div class="gap-2">
+<button class="btn btn-outline-success btn-lg " type="button" id="message3" name="message3" onChange={handleChange3} value={job.total_amt} >{job.job}</button>
+{job.total_amt}
+{job.total_amt}
+{job.job}
+{message3}
+</div>
+
+          
+          </li>
+          
+      ))
+      )
       }
-    </div>
+</div>
   );
     }
 
