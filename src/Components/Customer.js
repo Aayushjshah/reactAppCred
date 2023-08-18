@@ -10,7 +10,7 @@ export default function Home() {
         getAllCustomer().then(customers=>setcustomers(customers));
     },[])
 
-    const [customer, setcustomer] = useState([])
+    const [customer, setcustomer] = useState({customerId:-1,firstName:'None', lastName:'None', gender:'None',job:'None',dob:'None'})
 
     
     const handleChangeCustid = event => {
@@ -68,7 +68,7 @@ export default function Home() {
         {/* <p>{JSON.stringify(employees)}</p> */}
         <div className='row mt-5'>
             <ul className="list-group list-group-flush">
-               {  <select id="custid" name="custid" onChange={handleChangeCustid} value={custid} class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+               {/* {  <select id="custid" name="custid" onChange={handleChangeCustid} value={custid} class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                         <option selected >Select Customer Name</option>
                     {customers.length &&(
                     customers.map(customer => (
@@ -81,7 +81,15 @@ export default function Home() {
                     )}
                     </select>
 
-                }
+                } */}
+
+                {<form class="d-flex">
+        <input id="custid" name="custid" value={custid} onChange={handleChangeCustid} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+        {/* <button class="btn btn-outline-success" type="submit"  >Search</button> */}
+
+      </form>}
+
+      
                 {/* <renderdata/> */}
                 {/* {renderdata(message)} */}
 
