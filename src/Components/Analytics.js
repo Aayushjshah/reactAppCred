@@ -218,33 +218,33 @@ function MerchantFilter({ onFilterChange }) {
 function CityFilter({ onFilterChange }) {
   return (
     <div>
-      <h3>City Filter</h3>
-      {        <div className='container mt-5'> 
-
-
-
-{  <select id="message" name="message" onChange={handleChange} value={message}class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                        <option selected >Select City</option>
-                    {cities.length &&(
-                    cities.map(city => (
-
-                        
-                        <option value={city.total_amt}>{city.city}</option>
-
-                    ))
-                    )}
-                    </select>
-                }
-                
-                <h2>Total Amount:{message}</h2>
-            
-
-
-
-   
-
-</div>}
+  <h3>City Filter</h3>
+  <div className='container mt-5'>
+    <select
+      id="message"
+      name="message"
+      onChange={handleChange}
+      value={message}
+      className="form-select form-select-lg mb-3"
+      aria-label=".form-select-lg example"
+    >
+      <option value="" disabled selected>
+        Select City
+      </option>
+      {cities.length && (
+        cities.map((city, index) => (
+          <option key={index} value={city.total_amt}>
+            {city.city}
+          </option>
+        ))
+      )}
+    </select>
+    <div className="bg-light p-3">
+      <h2 className="text-success">Total Amount: {message}</h2>
     </div>
+  </div>
+</div>
+
   );
 }
 function StateFilter({ onFilterChange }) {
@@ -292,7 +292,7 @@ function SpendingCategoryFilter({ onFilterChange }) {
       {/* <h3>SpendingCategoryFilter</h3> */}
 
     {/* <BarChart> */}
-    <div className="pie-chart-container">
+    <div className="bar-chart-container">
       <BarChart width={700} height={500} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
@@ -318,19 +318,8 @@ function PopulationGroupsFilter({ onFilterChange }) {
     <ul className="list-group">
       {jobs.map((job, index) => (
         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-          <div>
-            <button
-              className="btn btn-outline-success btn-lg"
-              type="button"
-              id={`message-${index}`}
-              name={`message-${index}`}
-              onChange={handleChange3}
-              value={job.total_amt}
-            >
-              {job.job}
-            </button>
-          </div>
-          <div>{message3 === job.total_amt ? <span className="badge bg-success">{job.total_amt}</span> : null}</div>
+          <h5><div>{job.job}</div></h5>
+          <div className="badge bg-success">{job.total_amt}</div>
         </li>
       ))}
     </ul>
@@ -350,6 +339,7 @@ function AmtOfSpendingFilter({ onFilterChange }) {
       <input type="range" class="form-range" min="1001" max="5000" id="high" name="high" onChange={handleChangehigh} value={high}  ></input>
    {high}
     </div>
+    
     {
    spending.length &&(
     spending.map(spend=> (
