@@ -6,7 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 // import BarChart from './BarChart';
 import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionJob,gettransactionState,gettransactionGender} from '../Services/transacservice'
 import { NavLink, Outlet,useNavigate, useParams } from 'react-router-dom';
-
+import "../App.css"
 
 
 // Sample data
@@ -96,8 +96,8 @@ function GenderFilter({ onFilterChange }) {
         dataKey="value"
         isAnimationActive={false}
         data={data}
-        cx={200}
-        cy={200}
+        cx={400}
+        cy={300}
         outerRadius={250}
         fill="#8884d8"
         label={(entry) => `${entry.name} ${(entry.percent * 100).toFixed(2)}%`}
@@ -162,32 +162,16 @@ function StateFilter({ onFilterChange }) {
     color: generateRandomColor()
   }));
   return (
-    <div>
-      <h3>StateFilter</h3>
-      {
-        <div className='container mt-5'> 
-
-                       {states.length &&(
-                          states.map(state => (
-                              <li key={state.state} className="list-group-item">
-                             {state.state}
-                              
-                              </li>
-                          ))
-                          )
-                          }
-                       
-                       </div>
+    // <div>
       
-      }
-      <div>
+      <div className="pie-chart-container">
       <PieChart width={700} height={700}>
       <Pie
         dataKey="value"
         isAnimationActive={false}
         data={data}
-        cx={200}
-        cy={200}
+        cx={400}
+        cy={300}
         outerRadius={250}
         fill="#8884d8"
         label={(entry) => `${entry.name} ${(entry.percent * 100).toFixed(2)}%`}
@@ -200,7 +184,6 @@ function StateFilter({ onFilterChange }) {
       <Legend />
     </PieChart>
       </div>
-    </div>
 
     
   );
@@ -232,8 +215,8 @@ function SpendingCategoryFilter({ onFilterChange }) {
 
 
       }
-      <div>
-      <BarChart width={400} height={300} data={data}>
+      <div className="pie-chart-container">
+      <BarChart width={700} height={400} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
