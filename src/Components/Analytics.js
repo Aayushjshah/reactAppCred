@@ -342,25 +342,27 @@ function PopulationGroupsFilter({ onFilterChange }) {
 function AmtOfSpendingFilter({ onFilterChange }) {
   return (
     <div>
-  <h3>Profession</h3>
-  {jobs.length &&(
-     jobs.map(job => (
-          <li key={job.job} className="list-group-item">
-         <div class="gap-2">
-<button class="btn btn-outline-success btn-lg " type="button" id="message3" name="message3" onChange={handleChange3} value={job.total_amt} >{job.job}</button>
-{job.total_amt}
-{job.total_amt}
-{job.job}
-{message3}
-</div>
-
-          
-          </li>
-          
-      ))
-      )
+      <h3>AmtOfSpendingFilter</h3>
+      {
+        <div>
+     <div className='container mt-5'>   
+        <label for="customRange2" class="form-label">Spending Range</label>
+      <input type="range" class="form-range" min="1001" max="5000" id="high" name="high" onChange={handleChangehigh} value={high}  ></input>
+   {high}
+    </div>
+    {
+   spending.length &&(
+    spending.map(spend=> (
+         <li key={spend.cutomerId} className="list-group-item">
+        <h5>Cutomer Id:{spend.customerId}</h5><h6> Spending Amount:{spend.amt}</h6>
+         
+         </li>
+     ))
+     )
+ 
+    }</div>
       }
-</div>
+    </div>
   );
     }
 
