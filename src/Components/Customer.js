@@ -24,13 +24,19 @@ export default function Home() {
  
 
   return (
-    <><div className="container">
+    <><div className="container-fluid">
+      <div className="row">
+        <div className="col-md-12 customer-banner">
+          <h1>View Customers</h1>
+        </div>
+      </div>
+    </div><><div className="container">
       <div className="mb-4">
-      {<form class="d-flex">
-              <input id="custid" name="custid" value={custid} onChange={handleChangeCustid} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+        {<form class="d-flex">
+          <input id="custid" name="custid" value={custid} onChange={handleChangeCustid} class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
 
 
-            </form>}
+        </form>}
       </div>
       <div>
 
@@ -46,6 +52,6 @@ export default function Home() {
           <h5 className="card-text">DOB: {customer.dob}</h5>
         </div>
       </div>
-    </div></>
+    </div></></>
   )
 }

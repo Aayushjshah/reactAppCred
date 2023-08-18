@@ -7,6 +7,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionspendingByAmount,gettransactionJob,gettransactionState,gettransactionGender,gettransactionTopMerchant} from '../Services/transacservice'
 import { NavLink, Outlet,useNavigate, useParams } from 'react-router-dom';
 import "../App.css"
+import "../home.css"
 import { getCustomerById } from '../Services/custservice';
 
 // Sample data
@@ -150,7 +151,7 @@ function GenderFilter({ onFilterChange }) {
           <Cell key={`cell-${index}`} fill={entry.color} />
         ))}
       </Pie>
-      <Tooltip formatter={(value) => `${value} students`} />
+      <Tooltip formatter={(value) => `${value} Total Amount`} />
       <Legend />
     </PieChart>
     </div>
@@ -193,7 +194,7 @@ function MerchantFilter({ onFilterChange }) {
       {topMerchants.length && (
         <ul className="list-group list-group-flush">
           {topMerchants.map((topmerch, index) => (
-            <li className="list-group-item" key={index}>
+            <li className={`list-group-item ${index % 2 === 0 ? 'list-group-item-primary' : 'list-group-item-secondary'}`} key={index}>
               <h5 className="card-title">Name: {topmerch.merchant}</h5>
               <h6 className="card-subtitle">Total Amount: {topmerch.total_amt}</h6>
               <p className="card-text">State: {topmerch.state}</p>
@@ -206,6 +207,7 @@ function MerchantFilter({ onFilterChange }) {
     </div>
   </div>
 </div>
+
       
  
 
@@ -218,7 +220,7 @@ function MerchantFilter({ onFilterChange }) {
 function CityFilter({ onFilterChange }) {
   return (
     <div>
-  <h3>City Filter</h3>
+  
   <div className='container mt-5'>
     <select
       id="message"
@@ -272,7 +274,7 @@ function StateFilter({ onFilterChange }) {
           <Cell key={`cell-${index}`} fill={entry.color} />
         ))}
       </Pie>
-      <Tooltip formatter={(value) => `${value} students`} />
+      <Tooltip formatter={(value) => `${value} Total Amount`} />
       <Legend />
     </PieChart>
       </div>
@@ -317,8 +319,8 @@ function PopulationGroupsFilter({ onFilterChange }) {
   {jobs.length && (
     <ul className="list-group">
       {jobs.map((job, index) => (
-        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
-          <h5><div>{job.job}</div></h5>
+        <li key={index} className={`list-group-item d-flex justify-content-between align-items-center ${index % 2 === 0 ? 'list-group-item-primary' : 'list-group-item-secondary'}`}>
+          <h5>{job.job}</h5>
           <div className="badge bg-success">{job.total_amt}</div>
         </li>
       ))}
@@ -326,33 +328,45 @@ function PopulationGroupsFilter({ onFilterChange }) {
   )}
 </div>
 
+
   );
 }
 function AmtOfSpendingFilter({ onFilterChange }) {
   return (
     <div>
-      <h3>AmtOfSpendingFilter</h3>
-      {
-        <div>
-     <div className='container mt-5'>   
-        <label for="customRange2" class="form-label">Spending Range</label>
-      <input type="range" class="form-range" min="1001" max="5000" id="high" name="high" onChange={handleChangehigh} value={high}  ></input>
-   {high}
+  
+  <div>
+    <div className="container mt-5">
+      <h3><label htmlFor="customRange2" className="form-label">Spending Range</label></h3>
+      <input
+        type="range"
+        className="form-range"
+        min="1001"
+        max="5000"
+        id="high"
+        name="high"
+        onChange={handleChangehigh}
+        value={high}
+      />
+      <h5>{high}</h5>
     </div>
-    
-    {
-   spending.length &&(
-    spending.map(spend=> (
-         <li key={spend.cutomerId} className="list-group-item">
-        <h5>Cutomer Id:{spend.customerId}</h5><h6> Spending Amount:{spend.amt}</h6>
-         
-         </li>
-     ))
-     )
- 
-    }</div>
-      }
-    </div>
+
+    {spending.length && (
+      <ul className="list-group">
+        {spending.map((spend, index) => (
+          <li
+            key={spend.cutomerId}
+            className={`list-group-item ${index % 2 === 0 ? 'list-group-item-warning' : 'list-group-item-info'}`}
+          >
+            <h5>Customer Id: {spend.customerId}</h5>
+            <h6>Spending Amount: {spend.amt}</h6>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
+
   );
     }
 
@@ -408,6 +422,14 @@ function AmtOfSpendingFilter({ onFilterChange }) {
 
   return (
     <div className="container mt-5">
+      <div className="container-fluid">
+    <div className="row">
+      <div className="col-md-12 analytics-banner">
+        <h1>Analytics</h1>
+      </div>
+    </div>
+    </div>
+
       <div className="row">
         <div className="col-md-3">
           <div className="list-group">
