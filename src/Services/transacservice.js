@@ -5,6 +5,8 @@ let url4 = "http://localhost:8080/api/transaction/category";
 let url5 = "http://localhost:8080/api/transaction/state";
 let url6= "http://localhost:8080/api/transaction/total_amt/gender"
 let url7="http://localhost:8080/api/transaction/spendingByAmount"
+let url8="http://localhost:8080/api/transaction/topMerchants"
+
 
 export async function gettransactionMerchant() {
   let response = await fetch(`${url}`);
@@ -53,7 +55,12 @@ export async function gettransactionCity() {
     return spending;
   }
 
-
+  export async function gettransactionTopMerchant(limit) {
+    let response = await fetch(`${url8}/{limit}?limit=${limit}`);
+    let topMerchants = await response.json();
+    console.log();
+    return topMerchants;
+  }
 // a. By gender
 // b. By spending category
 // c. By merchant

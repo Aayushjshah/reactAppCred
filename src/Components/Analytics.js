@@ -4,7 +4,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts'; 
 
 // import BarChart from './BarChart';
-import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionJob,gettransactionState,gettransactionGender} from '../Services/transacservice'
+import {gettransactionMerchant,gettransactionCity,gettransactionCategory,gettransactionJob,gettransactionState,gettransactionGender,gettransactionTopMerchant} from '../Services/transacservice'
 import { NavLink, Outlet,useNavigate, useParams } from 'react-router-dom';
 import "../App.css"
 
@@ -34,6 +34,25 @@ export default function Analytics() {
 
 
 
+    const [message, setMessage] = useState('');
+    const [message2, setMessage2] = useState('');
+
+
+    const handleChange = event => {
+      setMessage(event.target.value);
+    }
+    const handleChange2 = event => {
+      setMessage2(event.target.value);
+      gettransactionTopMerchant(Number(message2)).then(topMerchants=>settopMerchants(topMerchants));
+
+    }
+    const [topMerchants,settopMerchants]=useState([]);
+
+
+
+
+
+
     useEffect(()=>{
       gettransactionMerchant().then(merchants=>setmerchants(merchants));
   },[])
@@ -54,6 +73,10 @@ export default function Analytics() {
 useEffect(()=>{
   gettransactionGender().then(gender=>setgender(gender));
 },[])
+// useEffect(()=>{
+// },[])
+
+
 
 const generateRandomColor = () => {
   const letters = '0123456789ABCDEF';
@@ -117,39 +140,86 @@ function GenderFilter({ onFilterChange }) {
 
 function MerchantFilter({ onFilterChange }) {
   return (
+    
     <div>
-      {/* <h3>MerchantFilter</h3> */}
-      {
-        merchants.length &&(
-          merchants.map(merchant => (
-              <li key={merchant.merchant} className="list-group-item">
-             {merchant.merchant}
+    <h3>Top  Merchants</h3>
+    {        <div className='container mt-5'> 
+
+
+    
+
+{  <select id="message2" name="message2" onChange={handleChange2} value={message2}class="form-select" aria-label="Default select example">
+                      <option selected >Select limit</option>
+                      <option value="5">5</option>
+                      <option value="10">10</option>
+                      <option value="15">15</option>
+                      <option value="20">20</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      </select>
+}
+
+
+                  {topMerchants.length &&(
+                  topMerchants.map(topmerch => (
+                    <ul className="list-group list-group-flush">
+
+<li>
+  <p></p>
+    <h5 class="card-title">Merchant Name: {topmerch.merchant} </h5>
+    <h6 class="card-subtitle">Total Amount :{topmerch.total_amt}</h6>
+    <h6 class="card-text">State:{topmerch.state}</h6>
+    <h6 class="card-text">City:{topmerch.city}</h6>
+    <h6 class="card-text">City Population:{topmerch.cityPopulation}</h6>
+     <p></p>     
+                      
+                      </li></ul>
+
+                  ))
+                  )}
               
-              </li>
-          ))
-          )
-          
+              {/* <h2>City: {message}</h2>
+              
+              <h2>Total Amount:{}</h2>
+           */}
 
 
-      }
-    </div>
+
+ 
+
+</div>}
+  </div>
+
   );
 }
+
 function CityFilter({ onFilterChange }) {
   return (
     <div>
       <h3>City Filter</h3>
       {        <div className='container mt-5'> 
 
-{cities.length &&(
-   cities.map(city => (
-       <li key={city.city} className="list-group-item">
-      {city.city}
-       
-       </li>
-   ))
-   )
-   }
+
+
+{  <select id="message" name="message" onChange={handleChange} value={message}class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected >Select City</option>
+                    {cities.length &&(
+                    cities.map(city => (
+
+                        
+                        <option value={city.total_amt}>{city.city}</option>
+
+                    ))
+                    )}
+                    </select>
+                }
+                
+                <h2>Total Amount:{message}</h2>
+            
+
+
+
+   
 
 </div>}
     </div>
@@ -198,25 +268,8 @@ function SpendingCategoryFilter({ onFilterChange }) {
   return (
     <div>
       <h3>SpendingCategoryFilter</h3>
-      {
-           <div className='container mt-5'> 
-
-           {categories.length &&(
-              categories.map(categorie => (
-                  <li key={categorie.category} className="list-group-item">
-                 {categorie.category}
-                  
-                  </li>
-              ))
-              )
-              }
-           
-           </div>
 
 
-      }
-      <div className="pie-chart-container">
-      <BarChart width={700} height={400} data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
